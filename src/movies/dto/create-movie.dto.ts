@@ -2,16 +2,16 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export default class CreateMovieDto {
-  @IsString()
   @ApiProperty()
+  @IsString()
   readonly title: string;
 
-  @IsNumber()
   @ApiProperty()
+  @IsNumber()
   readonly year: number;
 
+  @ApiProperty()
   @IsOptional()
   @IsString({ each: true })
-  @ApiProperty()
   readonly genres: string[];
 }
