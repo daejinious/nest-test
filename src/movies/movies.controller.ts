@@ -8,9 +8,10 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import CreateMovieDto from './dto/create-movie.dto';
+import UpdateMovieDto from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 import { MoviesService } from './movies.service';
-import CreateMovieDto from './dto/create-movie.dto';
 
 @Controller('movies')
 export class MoviesController {
@@ -42,10 +43,7 @@ export class MoviesController {
   }
 
   @Patch('/:id')
-  patch(@Param('id') movieId: string, @Body() movieData: any) {
-    return {
-      updatedMovie: movieId,
-      ...movieData,
-    };
+  patch(@Param('id') movieId: number, @Body() movieData: UpdateMovieDto) {
+    return this.moviesService.update(movieId, movieData);
   }
 }
